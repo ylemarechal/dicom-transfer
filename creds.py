@@ -1,0 +1,6 @@
+ORTHANC_LOCAL_HOST = "http://localhost:8042"
+ORTHANC_HOST = "http://localhost:8043"
+ORTHANC_USER = "orthanc"
+ORTHANC_PASSWD = "orthanc"
+PACS_AET = "PACSAET"
+TARGET_AET = "ORTHANCPACS"
