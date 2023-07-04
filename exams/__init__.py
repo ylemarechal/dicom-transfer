@@ -15,8 +15,16 @@ def get_accession_numbers():
     elif number_of_args == 2:
         with open(sys.argv[1]) as file:
             lines = file.readlines()
-            lines = lines[1:]
 
             return [line.replace('\n', '') for line in lines]
+
+    elif number_of_args == 3:
+        with open(sys.argv[1]) as file:
+            lines = file.readlines()
+
+            if 'with_header' in sys.argv:
+                return [line.replace('\n', '') for line in lines[1:]]
+            elif 'without_header' in sys.argv:
+                return [line.replace('\n', '') for line in lines]
 
     raise ValueError('Too many arguments')
