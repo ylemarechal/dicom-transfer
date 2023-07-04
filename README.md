@@ -48,4 +48,7 @@ pip install -r requirements.txt
 ```python
 source .venv/bin/activate
 python main.py
+
+# Or use a csv file for the accession numbers
+python main.py accession_numbers.csv
 ```

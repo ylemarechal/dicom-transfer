@@ -7,13 +7,14 @@ from alive_progress import alive_bar
 
 import conf
 import creds
-from exams import ACCESSION_NUMBERS
+from exams import get_accession_numbers
 from src import communication, data
 
 studies_checked = []
 access_num_checked = []
 
 if __name__ == "__main__":
+    accession_numbers = get_accession_numbers()
 
     local_orthanc = pyorthanc.Orthanc(creds.ORTHANC_LOCAL_HOST)
     onco_orthanc = pyorthanc.Orthanc(creds.ORTHANC_HOST)
@@ -35,8 +36,8 @@ if __name__ == "__main__":
             access_num_checked.append(study["MainDicomTags"]["AccessionNumber"])
             loading_bar()
 
-    with alive_bar(len(ACCESSION_NUMBERS), dual_line=True, title='Accession number') as bar:
-        for query_payload in data.build_query_payloads(ACCESSION_NUMBERS):
+    with alive_bar(len(accession_numbers), dual_line=True, title='Accession number') as bar:
+        for query_payload in data.build_query_payloads(accession_numbers):
             start = time.perf_counter()
             bar.text = f'-> Sending study {query_payload["Query"]["AccessionNumber"]}. Waiting for confirmation' \
                        f'{time.perf_counter() - start:0.2f} for sec'
